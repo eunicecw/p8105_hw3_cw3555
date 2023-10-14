@@ -305,6 +305,6 @@ nhances_df |>
        )
 ```
 
-The three-panel plot shows the 24-hour activity time courses(how activities change over time in a day) for men and women in three education levels. From the smooth line in each panel, we can see people tend to have most activities during 500-1000 mins in a day and least activities during 0-250 mins of a day. From the three panels, we can see that the two smooth lines for each gender are close to each other in high school equivalent and less than high school categories, which indicates that men and women have similar trends of activities in a day. However, for the more than high school category, women tends to have more activities in the middle of a day than men. 
+The three-panel plot shows the 24-hour activity time courses (how activities change over time in a day) for men and women in three education levels. From the smooth line in each panel, we can see people tend to have most activities during 500-1000 mins in a day and least activities during 0-250 mins of a day. From the three panels, we can see that the two smooth lines for each gender are close to each other in high school equivalent and less than high school categories, which indicates that men and women have similar trends of activities in a day. However, for the more than high school category, women tends to have more activities in the middle of a day than men. 
 
 
