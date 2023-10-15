@@ -115,7 +115,8 @@ brfss_smart2010_df =
  ) |> 
 mutate(
   response = factor(response, levels= c("Poor", "Fair", "Good", "Very good", "Excellent"), ordered= TRUE)
- )
+ ) |> 
+rename(state=locationabbr,location=locationdesc)
 ```
 
 
@@ -127,8 +128,8 @@ mutate(
 ```{r}
 brfss_smart2010_df |> 
   filter(year==2002) |> 
-  group_by(year, locationabbr) |> 
-  summarize(distinct_locations = n_distinct(locationdesc)) |> 
+  group_by(year, state) |> 
+  summarize(distinct_locations = n_distinct(location)) |> 
   filter(distinct_locations>=7)|> 
   knitr::kable()
 ```
@@ -140,8 +141,8 @@ brfss_smart2010_df |>
 ```{r}
 brfss_smart2010_df |> 
   filter(year==2010) |> 
-  group_by(year, locationabbr) |> 
-  summarize(distinct_locations = n_distinct(locationdesc)) |> 
+  group_by(year, state) |> 
+  summarize(distinct_locations = n_distinct(location)) |> 
   filter(distinct_locations>=7) |> 
   knitr::kable()
 ```
@@ -154,11 +155,11 @@ brfss_smart2010_df |>
 brfss_excellent_repsonse_df=
   brfss_smart2010_df |> 
   filter(response=="Excellent") |> 
-  group_by(year, locationabbr) |> 
+  group_by(year, state) |> 
   summarize(mean_value = mean(data_value, na.rm =TRUE))
 
 brfss_excellent_repsonse_df |> 
-  ggplot(aes(x=year, y=mean_value, color= locationabbr))+
+  ggplot(aes(x=year, y=mean_value, color=state))+
   geom_line(alpha=0.7)+
 labs(
     title = "Average Value of 'Excellent' Health Response Over Time Within a State",
@@ -176,7 +177,7 @@ A: This above “spaghetti” plot shows the average value of "excellent" health
 ```{r}
 brfss_2006_2010_NY_df =
   brfss_smart2010_df |> 
-  filter(year%in% c("2006", "2010"), locationabbr == "NY") 
+  filter(year%in% c("2006", "2010"), state == "NY") 
 
 brfss_2006_2010_NY_df |> 
   ggplot(aes(x=response, y= data_value))+
